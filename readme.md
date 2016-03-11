@@ -7,7 +7,7 @@ It is inspired by [leaflet-pip](https://github.com/mapbox/leaflet-pip),and it is
 ####example
 
 ```
-leafletPip.pointsInPolygon(L.geoJson(point.geojson),L.geoJson(singlepolygon.geojson))
+var selectedpoints = leafletPip.pointsInPolygon(L.geoJson(point.geojson),L.geoJson(singlepolygon.geojson))
 ```
 
 
@@ -21,5 +21,5 @@ leafletPip.pointsInPolygon(L.geoJson(point.geojson),L.geoJson(singlepolygon.geoj
 ####例子
 
 ```
-leafletPip.pointsInPolygon(L.geoJson(point.geojson),L.geoJson(singlepolygon.geojson))
+var selectedpoints = leafletPip.pointsInPolygon(L.geoJson(point.geojson),L.geoJson(singlepolygon.geojson))
 ```
