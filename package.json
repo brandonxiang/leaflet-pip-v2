@@ -1,0 +1,29 @@
+{
+  "name": "leaflet-pip-v2",
+  "version": "0.0.1",
+  "description": "extension for point in polygon searches for leaflet",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -s leafletPip index.js > leaflet-pip.js && uglifyjs leaflet-pip.js -c -m > leaflet-pip.min.js"
+  },
+  "keywords": [
+    "leaflet",
+    "plugin",
+    "point",
+    "in",
+    "polygon",
+    "geo",
+    "geographical"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brandonxiang/leaflet-pip-v2.git"
+  },
+  "devDependencies": {
+    "leaflet": "~0.7.7"
+  },
+  "author": "Brandon XIANG <1542453460@qq.com>",
+  "dependencies": {
+    "geojson-utils": "~1.1.0"
+  }
+}
