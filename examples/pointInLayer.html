@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="//cdn.bootcss.com/leaflet/0.7.7/leaflet.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<link href="//cdn.bootcss.com/leaflet/0.7.7/leaflet.css" rel="stylesheet">
 	<script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
-	<script src="../leaflet-pip.min.js"></script>
-	<title>example for pointsInPolygon</title>
+	<script src="./leaflet-pip.min.js"></script>
+	<title>example for pointInLayer</title>
 </head>
 <style>
   body { margin:0; padding:0; }
@@ -108,15 +109,14 @@
 		var polygons = L.geoJson(states).addTo(map);
 		var points = L.geoJson(geojson).addTo(map);
 
-		polygons.eachLayer(function(l){
-			var results = leafletPip.pointsInPolygon(points,l);
+		points.eachLayer(function(l){
+			var results = leafletPip.pointInLayer(l.getLatLng(),polygons,true);
 			if(results.length>0){
 
 				results.forEach(function(r){
 					console.log(r);
-					r.setOpacity(0.5);
-				})
-				
+					r.setStyle({color: 'red'});
+				});
 			}
 		});
 
