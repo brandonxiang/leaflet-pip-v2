@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//cdn.bootcss.com/leaflet/0.7.7/leaflet.css" rel="stylesheet">
+	<script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
+	<script src="../leaflet-pip.min.js"></script>
+	<title>example for pointsInPolygon</title>
+</head>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+<body>
+<div id="map"></div>
+	<script>
+        var geojson = [
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9230309538,22.5328601327]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9098394332,22.5308440047]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9184338316,22.5283211404]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9001586386,22.5495591260]
+		    }
+		  },
+		  		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9497931782,22.5566469565]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9592382646,22.5339793452]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.9472855028,22.5067787643]
+		    }
+		  },
+		  {
+		    "type": "Feature",
+		    "geometry": {
+		      "type": "Point",
+		      "coordinates": [113.8875994756,22.5023345019]
+		    }
+		  },
+		];
+
+		var states = [{
+		    "type": "Feature",
+		    "properties": {"party": "Republican"},
+		    "geometry": {
+		        "type": "Polygon",
+		        "coordinates": [[
+					[113.9042260686, 22.5445272920],
+					[113.9268836350,  22.5436866939],
+					[113.9248790544,  22.5255291551],
+					[113.9052404332, 22.5261030047]
+		        ]]
+		    }
+		}, {
+		    "type": "Feature",
+		    "properties": {"party": "Democrat"},
+		    "geometry": {
+		        "type": "Polygon",
+		        "coordinates": [[
+		            [113.9268836350, 22.5436866939],
+		            [113.9494341782,  22.5547779565],
+		            [113.9506008258,  22.5334206170],
+		            [113.9248790544, 22.5255291551]
+
+		        ]]
+		    }
+		}];
+
+		var map = L.map('map').setView([22.5365321328,113.9173539538], 13);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		var polygons = L.geoJson(states).addTo(map);
+		var points = L.geoJson(geojson).addTo(map);
+
+		polygons.eachLayer(function(l){
+			var results = leafletPip.pointsInPolygon(points,l);
+			if(results.length>0){
+
+				results.forEach(function(r){
+					console.log(r);
+					r.setOpacity(0.5);
+				})
+				
+			}
+		});
+
+	</script>
+</body>
+</html>
