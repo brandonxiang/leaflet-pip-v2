@@ -19,16 +19,26 @@ var leafletPip = {
         });
         return results;
     },
+    /**
+     * whether the point is in the polygon object
+     */
+    pointInPolygon: function(point,layer){
+    	return gju.pointInPolygon(point.toGeoJSON().geometry, layer.toGeoJSON().geometry);
+    },
+    /**
+     * which the points in L.geojson layer are in the polygon object
+     * return an array of points 
+     */
     pointsInPolygon: function(points, layer) {
-        'use strict';
         var results = [];
         points.eachLayer(function(p) {
-            if (gju.pointInPolygon(p.toGeoJSON().geometry, layer.toGeoJSON().geometry)) {
+            if (this.pointInPolygon(p,layer)) {
                 results.push(p);
             }
         });
         return results;
-    }
+    },
+
 };
 module.exports = leafletPip;
 },{"geojson-utils":2}],2:[function(require,module,exports){
