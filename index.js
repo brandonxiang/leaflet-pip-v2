@@ -31,7 +31,7 @@ var leafletPip = {
     pointsInPolygon: function(points, layer) {
         var results = [];
         points.eachLayer(function(p) {
-            if (this.pointInPolygon(p,layer)) {
+            if (leafletPip.pointInPolygon(p,layer)) {
                 results.push(p);
             }
         });
